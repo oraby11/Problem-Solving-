@@ -18,3 +18,29 @@ int main() {
 
     return 0;
 }
+/*
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int n,k;
+    cin>>n;
+    cin>>k;
+    int arr[100];
+    int index=0;
+    for(int i=1;i<=n;i+=2)
+    {
+       arr[index]=i;
+       index++;
+    }
+    for(int i=2;i<=n;i+=2)
+    {
+       arr[index]=i;
+       index++;
+    }
+    cout<<arr[k-1]<<endl;
+
+    return 0;
+}
+*/
