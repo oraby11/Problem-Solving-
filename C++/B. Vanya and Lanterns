@@ -1,0 +1,55 @@
+#include <iostream>
+
+using namespace std;
+void selectionsort(int arr[],int n){
+    int smallest=arr[0];
+    int small_index=0;
+    int i,j,temp;
+    for( i=0;i<n-1;i++){
+
+            small_index=i;
+    for ( j = i + 1; j < n; j++) {
+            if (arr[j] < arr[small_index]) {
+            small_index= j;
+        }
+        }
+
+        temp = arr[small_index];
+        arr[small_index] = arr[i];
+        arr[i] = temp;
+    }
+    }
+double max(double a,double b , double c)
+{
+    if (a > b && a > c) return a;
+    else if (b > c) return b;
+    else return c;
+}
+int main()
+{
+    int  n,l;
+    cin>>n;
+    cin>>l;
+    int arr[n];
+    double sub,ma=0.00;
+    for(int i=0;i<n;i++)
+    {
+       cin>>arr[i];
+    }
+    selectionsort(arr,n);
+    for(int i=1;i<n;i++)
+    {
+        sub=arr[i]-arr[i-1];
+
+        if(ma<sub)
+        {
+           ma=sub;
+        }
+    }
+    double res=max(ma/2.0,double(arr[0]-0),double(l-arr[n-1]));
+    cout.precision(10);
+    cout << fixed << res << endl;
+
+
+    return 0;
+}
