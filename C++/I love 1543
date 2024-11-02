@@ -1,0 +1,68 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// Function to extract numbers from the carpet in a clockwise manner
+string extractClockwise(const vector<vector<char>>& carpet, int n, int m) {
+    string result;
+
+    int layers = (min(n, m) + 1) / 2; // Calculate the number of layers
+    for (int layer = 0; layer < layers; layer++) {
+        // Traverse top row from left to right
+        for (int j = layer; j < m - layer; j++) {
+            result += carpet[layer][j];
+        }
+        // Traverse right column from top to bottom
+        for (int j = layer + 1; j < n - layer; j++) {
+            result += carpet[j][m - layer - 1];
+        }
+        // Traverse bottom row from right to left
+        if (n - layer - 1 > layer) {
+            for (int j = m - layer - 1; j >= layer; j--) {
+                result += carpet[n - layer - 1][j];
+            }
+        }
+        // Traverse left column from bottom to top
+        if (m - layer - 1 > layer) {
+            for (int j = n - layer - 2; j > layer; j--) {
+                result += carpet[j][layer];
+            }
+        }
+    }
+    return result;
+}
+
+int main() {
+    int t;
+    cin >> t;  // Number of test cases
+    for (int i = 0; i < t; i++) {
+        int n, m;
+        cin >> n >> m;  // Read n (rows) and m (columns)
+
+        // Create the carpet
+        vector<vector<char>> carpet(n, vector<char>(m));
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k < m; k++) {
+                cin >> carpet[j][k];  // Read each character of the carpet
+            }
+        }
+
+        // Extract numbers from the carpet in clockwise order
+        string extracted = extractClockwise(carpet, n, m);
+
+        // Count occurrences of the number "1543"
+        string target = "1543";
+        int targetCount = 0;
+        size_t pos = extracted.find(target);
+        while (pos != string::npos) {
+            targetCount++;
+            pos = extracted.find(target, pos + 1); // Find next occurrence
+        }
+
+        // Output the count for the current test case
+        cout << targetCount << endl;
+    }
+    return 0;
+}
