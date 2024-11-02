@@ -1,0 +1,60 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+void selectionSortDescending(vector<int>& arr) {
+    int n = arr.size();
+
+    for (int i = 0; i < n - 1; i++) {
+        int maxIndex = i;
+
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] > arr[maxIndex]) {
+                maxIndex = j;
+            }
+        }
+
+        if (maxIndex != i) {
+            swap(arr[i], arr[maxIndex]);
+        }
+    }
+}
+int main()
+{
+
+    int t;
+    cin>>t;
+    for(int i=0;i<t;i++)
+    {
+        int n,k,sum=0,maX=0;
+        cin>>n>>k;
+           vector<int> arrA(k), arrB(k);
+       // int arrA[k],arrB[k];
+        for(int i=0;i<k;i++)
+        {
+            cin>>arrA[i];
+            int j=0;
+            j=i;
+            cin>>arrB[j];
+
+        }
+
+        if(n==1)
+        {
+            int maxElement = *max_element(arrB.begin(), arrB.end());
+            cout << maxElement << endl;
+
+        }
+        else
+        {
+            selectionSortDescending(arrB);
+            for(int i=0;i<k;i++)
+            {
+                sum+=arrB[i];
+            }
+            cout<<sum<<endl;
+        }
+
+    }
+    return 0;
+}
