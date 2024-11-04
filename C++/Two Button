@@ -1,0 +1,34 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n,m;
+    cin>>n>>m;
+    int num=0;
+
+    if(n>=m)
+    {
+       num=n-m;
+    }
+    else
+    {
+         while(m>n)
+        {
+          if(m%2==0)
+          {
+              m/=2;
+          }
+          else
+          {
+              m+=1;
+
+          }
+          num++;
+        }
+      num+=n-m;
+    }
+    cout<<num;
+    return 0;
+}
